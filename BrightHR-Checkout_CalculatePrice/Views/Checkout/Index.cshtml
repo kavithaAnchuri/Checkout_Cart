@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.Title = "Checkout";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .checkout-container {
+        margin-top: 50px;
+    }
+
+    .total-price {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .table-container {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .table-container .total-price {
+        margin: 0;
+    }
+
+    .checkout-container 
+    {
+        width: 50%;
+    }
+</style>
+
+<div class="container checkout-container text-center">
+    @* <h2>Checkout</h2> *@
+
+    <!-- Scan Form -->
+    <form id="scanForm" class="d-inline-block" method="post" action="@Url.Action("ScanItem", "Checkout")">
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <label for="item" class="form-label me-2">Select Item:</label>
+            <select id="item" name="item" class="form-select me-2" required>
+                <option value="">--Select an item--</option>
+                <option value="A">A - £50</option>
+                <option value="B">B - £30</option>
+                <option value="C">C - £20</option>
+                <option value="D">D - £15</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Scan</button>
+        </div>
+    </form>
+
+
+    <!-- Scanned Items Table -->
+    <div class="mt-5 table-container">
+        <div class="table-responsive">
+            <h3>Scanned Items</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Items</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody id="itemList">
+                    @if (ViewBag.Items != null)
+                    {
+                        foreach (var item in ViewBag.Items as Dictionary<string, int>)
+                        {
+                            <tr>
+                                <td>@item.Key</td>
+                                <td>@item.Value</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2">No items scanned yet.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-5"></div>
+        <div class="col-4">
+            <h3>Total Price</h3>
+        </div>
+        <div class="col-3">
+            <p id="totalPrice" class="total-price">£@ViewBag.TotalPrice</p>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#scanForm').submit(function(e) {
+                    e.preventDefault();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("ScanItem")',
+                        data: $(this).serialize(),
+                        dataType: 'json',
+                        success: function(response) {
+                            // Update total price
+                            $('#totalPrice').text('£' + response.totalPrice);
+
+                            // Update item list
+                            var itemList = $('#itemList');
+                            itemList.empty();
+                            $.each(response.items, function(key, value) {
+                                var row = $('<tr></tr>');
+                                var cellItem = $('<td></td>').text(key);
+                                var cellCount = $('<td></td>').text(value);
+
+                                row.append(cellItem);
+                                row.append(cellCount);
+                                itemList.append(row);
+                            });
+                           
+                        },
+                        error: function() {
+                            alert('An error occurred while processing your request.');
+                        }
+                    });
+                });
+            });
+        </script>
+}

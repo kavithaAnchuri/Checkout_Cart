@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrightHR-Checkout_CalculatePrice", "BrightHR-Checkout_CalculatePrice.csproj", "{3AE94A2F-A63D-465E-9B5A-3731E9F30BE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout_CalculatePrice", "..\Checkout_CalculatePrice\Checkout_CalculatePrice.csproj", "{0F90F66C-D4AB-419F-805B-BF9151CAA79F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AE94A2F-A63D-465E-9B5A-3731E9F30BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AE94A2F-A63D-465E-9B5A-3731E9F30BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AE94A2F-A63D-465E-9B5A-3731E9F30BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AE94A2F-A63D-465E-9B5A-3731E9F30BE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F90F66C-D4AB-419F-805B-BF9151CAA79F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F90F66C-D4AB-419F-805B-BF9151CAA79F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F90F66C-D4AB-419F-805B-BF9151CAA79F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F90F66C-D4AB-419F-805B-BF9151CAA79F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E78810B7-38A7-4A37-B98D-21CFA592ABD7}
+	EndGlobalSection
+EndGlobal
